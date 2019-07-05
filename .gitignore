@@ -3,9 +3,9 @@
 !.vimrc
 !.Xresources
 !.tmux.conf
-!.config/i3/
-!.config/i3lock-fancier/
-!.config/neofetch/
-!.config/polybar/
-!.config/qpdfview
-!.config/ranger/
+!.config/i3/*
+!.config/i3lock-fancier/*
+!.config/neofetch/*
+!.config/polybar/*
+!.config/qpdfview/*
+!.config/ranger/*
