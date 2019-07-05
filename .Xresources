@@ -1,0 +1,35 @@
+Xcursor.size: 16
+
+! -----------
+! Rofi color theme
+! -----------
+rofi.color-enabled:true
+rofi.color-window: #31004a, #31004a, #31004a
+rofi.color-normal: #31004a, #FF0000, #31004a, #ab00ff, #ffffff
+rofi.color-active: #31004a, #ffffff, #31004a, #ab00ff, #ffffff
+rofi.color-urgent: #FF0000, #ffffff, #31004a, #ab00ff, #ffffff
+
+rofi.font: terminus 12
+
+! ----------
+! Urxvt
+! ---------
+URxvt.scrollBar: false
+ 
+*background: #000000
+*foreground: #FF9900
+ 
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0200/c800
+ 
+URxvt.cursorColor: magenta
+ 
+URxvt.perl-ext-common: resize-font
+
+URxvt.font: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
+URxvt.boldFont: -*-terminus-bold-r-*-*-14-*-*-*-*-*-iso10646-1
+URxvt.italicFont: -*-terminus-medium-r-*-*-14-*-*-*-*-*-iso10646-1
+URxvt.boldItalicFont: -*-terminus-bold-r-*-*-14-*-*-*-*-*-iso10646-1
+URxvt.keysym.Control-V: eval:paste_clipboard
+URxvt.keysym.Control-C: eval:selection_to_clipboard
+
