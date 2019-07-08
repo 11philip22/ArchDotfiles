@@ -1,0 +1,293 @@
+set $mod Mod1
+ 
+set $browser chromium
+ 
+#starts nvidia settings  widout popping open a window
+exec nvidia-settings --load-config-only
+ 
+#starts compton to prevent screen tearing
+exec --no-startup-id compton
+ 
+#start wallpaper slideshow
+exec feh --bg-fill /home/philip/.wallpaper.jpg
+#exec feh --bg-scale ~/pictures/wallpaper\ slideshow/oxBzp97FIlzWvhl5_8gZyNX0TJ-IieEyBbyQn7XVGWs.jpg
+
+exec lxpolkit
+ 
+exec /usr/bin/owncloud
+ 
+exec nm-applet
+
+exec usbguard-applet-qt
+
+exec stack-client
+
+exec /usr/lib/notification-daemon-1.0/notification-daemon 
+
+new_window 1pixel
+ 
+for_window [class="float"] floating enable
+ 
+for_window [class="Arandr"] floating enable
+
+for_window [class="GParted"] floating enable
+ 
+for_window [class="usbguard-applet-qt" instance="usbguard-applet-qt"] floating enable
+
+for_window [class="Telegram"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+
+for_window [class="whats-app-nativefier-d52542"] floating enable
+
+floating_modifier $mod
+ 
+#adds gaps
+gaps inner 7
+gaps outer 9
+ 
+smart_gaps on
+ 
+smart_borders on
+ 
+#######################-modes-#####################################################
+ 
+bindsym $mod+r mode "resize"
+ 
+# resize window (you can also use the mouse for that)
+mode "resize" {
+       # These bindings trigger as soon as you enter the resize mode
+       # Pressing left will shrink the windows width.
+       # Pressing up will shrink the windows height.
+       bindsym j resize shrink width 10 px or 10 ppt
+       bindsym k resize grow height 10 px or 10 ppt
+       bindsym l resize shrink height 10 px or 10 ppt
+       bindsym semicolon resize grow width 10 px or 10 ppt
+ 
+       # same bindings, but for the arrow keys
+       bindsym Left resize shrink width 10 px or 10 ppt
+       bindsym Down resize grow height 10 px or 10 ppt
+       bindsym Up resize shrink height 10 px or 10 ppt
+       bindsym Right resize grow width 10 px or 10 ppt
+ 
+       # back to normal: Enter or Escape
+       bindsym Return mode "default"
+       bindsym Escape mode "default"
+}
+ 
+#alt+shift+g allows you to male gaps
+ 
+set $mode_gaps1 Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps1"
+ 
+mode "$mode_gaps1" {
+       bindsym o      mode "$mode_gaps_outer"
+       bindsym i      mode "$mode_gaps_inner"
+       bindsym Return mode "default"
+       bindsym Escape mode "default"
+}
+ 
+mode "$mode_gaps_inner" {
+       bindsym plus  gaps inner current plus 5
+       bindsym minus gaps inner current minus 5
+       bindsym 0     gaps inner current set 0
+ 
+       bindsym Shift+plus  gaps inner all plus 5
+       bindsym Shift+minus gaps inner all minus 5
+       bindsym Shift+0     gaps inner all set 0
+ 
+       bindsym Return mode "default"
+       bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+       bindsym plus  gaps outer current plus 5
+       bindsym minus gaps outer current minus 5
+       bindsym 0     gaps outer current set 0
+ 
+       bindsym Shift+plus  gaps outer all plus 5
+       bindsym Shift+minus gaps outer all minus 5
+       bindsym Shift+0     gaps outer all set 0
+ 
+       bindsym Return mode "default"
+       bindsym Escape mode "default"
+}
+ 
+set $mode_gaps Toggle gaps: (1) on (2) off
+bindsym $mod+g mode "$mode_gaps"
+mode "$mode_gaps" {
+    bindsym 1 mode "default", gaps inner all set 10, gaps outer all set 4
+    bindsym 2 mode "default", gaps inner all set 1, gaps outer all set 1
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+##############################-colors-##########################################################
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+bar {
+    position top
+    colors {
+        background #31004a
+        statusline #FF9900
+        
+        focused_workspace  #ab00ff #ab00ff #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff         
+          }
+    status_command py3status -c ~/.config/i3/i3status.conf -i .config/i3/i3statusmodules
+}
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #ab00ff #ab00ff #000000 #ab00ff   #ab00ff 
+client.focused_inactive #31004a #31004a #ffffff #31004a   #31004a
+client.unfocused        #31004a #31004a #ffffff #31004a   #31004a
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+ 
+#client.background       #ffffff
+########################-key-bindings######################################################
+#stage DO NOT INCLUDE IN GITHUB!!!!!!!!!!!!!!!!!!!!!
+bindsym $mod+shift+a exec xfreerdp /u:philip /p:Welkom001 /v:172.16.138 -grab-keyboard -mouse-motion /w:1440 /h:900
+ 
+ 
+bindsym $mod+shift+m exec /home/philip/scripts/mpdmenu.sh
+bindsym $mod+shift+v exec urxvt -e vis
+ 
+#######################-keybindings networks-##############################
+#bindsym $mod+n exec urxvt -e wicd-curses
+#use if using network manager
+bindsym $mod+n exec urxvt -e nmtui
+ 
+#######################-general key bindings-####################################
+bindsym $mod+shift+F7     exec exec feh --randomize --bg-fill ~/pictures/wallpaper\ slideshow/*
+bindsym $mod+F7           exec /home/philip/scriptkiddie-scripts/screen
+bindsym $mod+shift+h      exec urxvt -e htop
+bindsym $mod+Shift+d      exec urxvt -e ranger
+bindsym $mod+shift+c      exec i3lock  
+bindsym $mod+shift+x      exec /home/philip/scripts/shutdown.sh
+bindsym $mod+Shift+z      exec /home/philip/scripts/reboot.sh
+bindsym $mod+Shift+s      exec /home/philip/scripts/suspend.sh
+bindsym $mod+Shift+w      exec --no-startup-id $browser
+bindsym $mod+m            exec thunderbird
+#bindsym $mod+shift+p      exec xfreerdp /v: -grab-keyboard -mouse-motion /w:1920 /h:1080
+bindsym $mod+p            exec urxvt -name pulsemixer -e pulsemixer
+#bindsym $mod+shift+p      exec /home/philip/scripts/mpctoggle.sh
+bindsym XF86Display       exec --no-startup-id arandr
+bindsym $mod+Control+s    exec --no-startup-id skypeforlinux
+bindsym $mod+Return       exec urxvt
+bindsym $mod+Tab          exec python /home/philip/scripts/i3-tab-small.py
+bindsym $mod+Shift+Tab    exec urxvt -e ssh -A -t thuis -A ssh osiris
+#bindsym $mod+u            exec urxvt -e sudo /home/philip/scripts/gpuswitch
+bindsym --release Print   exec gnome-screenshot -a
+bindsym $mod+shift+n      exec systemctl restart NetworkManager
+bindsym XF86LaunchA       exec mpc -h 192.168.1.2 prev
+bindsym XF86Explorer      exec mpc -h 192.168.1.2 next
+bindsym XF86Search        exec /home/philip/scripts/mpdtoggle.sh
+#bindsym XF86Tools         exec notify-send "$(mpc --host=192.168.1.2 | sed -n 1p)" 
+bindsym $mod+Shift+Return exec urxvt -e ssh $(cat /home/philip/scripts/nicetryfbi.txt | grep wan | awk '{print $2}') -l philip
+bindsym $mod+u            exec rofi -show ssh
+bindsym $mod+q            exec rofi -show window
+bindsym XF86Tools         exec /home/philip/scripts/randomwallpaper.sh
+
+#kill focused window
+bindsym $mod+Shift+q kill
+ 
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show run
+ 
+# reload the configuration file
+#bindsym $mod+Shift+v reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec /home/philip/scripts/i3exit.sh
+ 
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+ 
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+ 
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+ 
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+ 
+# split in horizontal orientation
+bindsym $mod+h split h
+ 
+# split in vertical orientation
+bindsym $mod+v split v
+ 
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+ 
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+ 
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+ 
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+ 
+# focus the parent container
+bindsym $mod+a focus parent
+ 
+# focus the child container
+#bindsym $mod+d focus child
+ 
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+ 
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+########################-sound key bindings-##########################################$
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer --allow-boost -i 1
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer --allow-boost -d 1
+bindsym XF86AudioMute exec --no-startup-id pamixer -t
+
+#######################backlight###############################################
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
