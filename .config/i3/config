@@ -40,6 +40,8 @@ for_window [window_role="pop-up"] floating enable
 
 for_window [class="whats-app-nativefier-d52542"] floating enable
 
+for_window [class="Nm-connection-editor"] floating enable
+
 floating_modifier $mod
  
 #adds gaps
