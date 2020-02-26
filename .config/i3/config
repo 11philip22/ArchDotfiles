@@ -172,9 +172,9 @@ bindsym $mod+F7           exec /home/philip/scriptkiddie-scripts/screen
 bindsym $mod+shift+h      exec urxvt -e htop
 bindsym $mod+Shift+d      exec urxvt -e ranger
 bindsym $mod+shift+c      exec i3lock  
-bindsym $mod+shift+x      exec /home/philip/scripts/shutdown.sh
-bindsym $mod+Shift+z      exec /home/philip/scripts/reboot.sh
-bindsym $mod+Shift+s      exec /home/philip/scripts/suspend.sh
+bindsym $mod+shift+x      exec /home/philip/devel/scripts/shutdown.sh
+bindsym $mod+Shift+z      exec /home/philip/devel/scripts/reboot.sh
+bindsym $mod+Shift+s      exec /home/philip/devel/scripts/suspend.sh
 bindsym $mod+Shift+w      exec --no-startup-id $browser
 bindsym $mod+m            exec thunderbird
 #bindsym $mod+shift+p      exec xfreerdp /v: -grab-keyboard -mouse-motion /w:1920 /h:1080
@@ -183,7 +183,7 @@ bindsym $mod+p            exec urxvt -name pulsemixer -e pulsemixer
 bindsym XF86Display       exec --no-startup-id arandr
 bindsym $mod+Control+s    exec --no-startup-id skypeforlinux
 bindsym $mod+Return       exec urxvt
-bindsym $mod+Tab          exec python /home/philip/scripts/i3-tab-small.py
+bindsym $mod+Tab          exec python /home/philip/devel/scripts/i3-tab-small.py
 bindsym $mod+Shift+Tab    exec urxvt -e ssh -A -t thuis -A ssh osiris
 #bindsym $mod+u            exec urxvt -e sudo /home/philip/scripts/gpuswitch
 bindsym --release Print   exec gnome-screenshot -a
@@ -208,7 +208,7 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec /home/philip/scripts/i3exit.sh
+bindsym $mod+Shift+e exec /home/philip/devel/scripts/i3exit.sh
  
 # change focus
 bindsym $mod+j focus left
