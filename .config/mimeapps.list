@@ -6,6 +6,7 @@ x-scheme-handler/about=chromium.desktop
 x-scheme-handler/unknown=chromium.desktop
 x-scheme-handler/mailto=userapp-Thunderbird-QJJLVZ.desktop
 message/rfc822=userapp-Thunderbird-QJJLVZ.desktop
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-QJJLVZ.desktop;
